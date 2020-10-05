@@ -16,10 +16,8 @@ import { NewsComponent } from './news/news.component';
 
 const routes: Routes = [ 
   {path:"checkout", component:CheckoutComponent}, 
-
   {path:"", component:BodyComponent}, 
   {path:"Login", component:LoginComponent}, 
-
   {path:"productDetail", component:ProductDetailComponent}, 
   {path:"contact", component:ContactComponent}, 
   {path:"cart", component:CartComponent}, 
