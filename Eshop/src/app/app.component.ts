@@ -7,7 +7,7 @@ import { MyserviceService } from './myservice.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Angular 7 Project!'; 
+  title = 'EShop'; 
   public persondata = [];
   constructor(private myservice: MyserviceService) {}
   ngOnInit() {
