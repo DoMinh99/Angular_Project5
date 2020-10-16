@@ -1,16 +1,14 @@
-import { TestBed } from '@angular/core/testing';
-
-import { MyserviceService } from './myservice.service';
-
-describe('MyserviceService', () => {
-  let service: MyserviceService;
-
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(MyserviceService);
-  });
-
-  it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
-});
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+ 
+@Injectable({
+  providedIn: 'root'
+})
+export class MyserviceService {
+  private finaldata = [];
+  private apiurl = "http://jsonplaceholder.typicode.com/users";
+  constructor(private httpClient: HttpClient) { }
+  getData() {
+     return this.httpClient.get(this.apiurl);
+  }
+}
