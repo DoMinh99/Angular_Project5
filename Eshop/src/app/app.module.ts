@@ -12,6 +12,7 @@ import { LoginComponent } from './login/login.component';
 import { ContactComponent } from './contact/contact.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { NewsComponent } from './news/news.component';
+import { MyserviceService } from './myservice.service';
 
 
 @NgModule({
@@ -32,7 +33,7 @@ import { NewsComponent } from './news/news.component';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [MyserviceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
