@@ -13,6 +13,7 @@ import { ContactComponent } from './contact/contact.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { NewsComponent } from './news/news.component';
 import { MyserviceService } from './myservice.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { MyserviceService } from './myservice.service';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [MyserviceService],
   bootstrap: [AppComponent]

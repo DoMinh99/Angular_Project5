@@ -1,5 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
 import { MyserviceService } from './myservice.service';
 
 describe('MyserviceService', () => {
@@ -14,3 +17,15 @@ describe('MyserviceService', () => {
     expect(service).toBeTruthy();
   });
 });
+
+@Injectable({
+  providedIn: 'root'
+})
+export class MyservieService {
+  private finaldata = [];
+  private apiurl = "http://jsonplaceholder.typicode.com/users";
+  constructor(private httpClient: HttpClient) { }
+  getData() {
+     return this.httpClient.get(this.apiurl);
+  }
+}
