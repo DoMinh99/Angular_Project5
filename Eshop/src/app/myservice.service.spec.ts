@@ -23,7 +23,7 @@ describe('MyserviceService', () => {
 })
 export class MyservieService {
   private finaldata = [];
-  private apiurl = "http://jsonplaceholder.typicode.com/users";
+  private apiurl = "api/";
   constructor(private httpClient: HttpClient) { }
   getData() {
     return this.httpClient.get(this.apiurl);
