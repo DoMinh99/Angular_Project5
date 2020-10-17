@@ -9,7 +9,7 @@ import 'rxjs/add/operator/takeUntil';
   templateUrl: './body.component.html',
   styleUrls: ['./body.component.css']
 })
-export class bodyComponent extends BaseComponent implements OnInit {
+export class BodyComponent extends BaseComponent implements OnInit {
   list_item:any;
   constructor(injector: Injector) { 
     super(injector);
