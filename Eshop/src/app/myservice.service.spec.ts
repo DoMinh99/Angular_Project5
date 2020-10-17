@@ -26,6 +26,6 @@ export class MyservieService {
   private apiurl = "http://jsonplaceholder.typicode.com/users";
   constructor(private httpClient: HttpClient) { }
   getData() {
-     return this.httpClient.get(this.apiurl);
+    return this.httpClient.get(this.apiurl);
   }
 }
