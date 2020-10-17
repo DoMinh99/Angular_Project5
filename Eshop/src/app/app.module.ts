@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { bodyComponent } from './body/body.component';
+import { BodyComponent } from './body/body.component';
 import { FooterComponent } from './footer/footer.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { CartComponent } from './cart/cart.component';
@@ -20,7 +20,7 @@ import {Router} from '@angular/router';
   declarations: [
     AppComponent,
     HeaderComponent,
-    bodyComponent,
+    BodyComponent,
     FooterComponent,
     CheckoutComponent,
     CartComponent,
@@ -28,6 +28,7 @@ import {Router} from '@angular/router';
     ContactComponent,
     ProductDetailComponent,
     NewsComponent,
+    BodyComponent,
     
   ],
   imports: [
