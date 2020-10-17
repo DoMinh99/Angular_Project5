@@ -13,19 +13,25 @@ import { NewsComponent } from './news/news.component';
 import { BodyComponent } from './body/body.component';
 
 
+
 const routes: Routes = [ 
   {path:"checkout", component:CheckoutComponent}, 
-  {path:"body", component:BodyComponent}, 
-  {path:"Login", component:LoginComponent}, 
+  {path:"", component:BodyComponent}, 
+  {path:"login", component:LoginComponent}, 
   {path:"productDetail", component:ProductDetailComponent}, 
   {path:"contact", component:ContactComponent}, 
   {path:"cart", component:CartComponent}, 
   {path:"news", component:NewsComponent}, 
+  {path:"header", component:HeaderComponent}, 
+  {path:"footer", component:FooterComponent}, 
+  {path:"", component:BrowserModule}, 
+  {path:"app", component:AppComponent}, 
 ];
 
 @NgModule({
 
   declarations: [
+    // BodyComponent,
     // CheckoutComponent,
     // BodyComponent,
     // HeaderComponent,
