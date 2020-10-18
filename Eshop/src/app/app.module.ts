@@ -19,7 +19,6 @@ import { BodyComponent } from './body/body.component';
 @NgModule({
   declarations: [
     AppComponent,
-    
     HeaderComponent,
     FooterComponent,
     CheckoutComponent,
