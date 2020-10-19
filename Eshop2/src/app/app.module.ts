@@ -13,7 +13,10 @@ import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { CategoryComponent } from './shared/category/category.component';
 import { HttpClientModule } from '@angular/common/http';
-import {FormsModule,ReactiveFormsModule} from '@angular/forms';
+import { FormsModule,ReactiveFormsModule} from '@angular/forms';
+import { catchError, retry } from 'rxjs/internal/operators';
+
+
 
 @NgModule({
   declarations: [
@@ -28,6 +31,7 @@ import {FormsModule,ReactiveFormsModule} from '@angular/forms';
     FooterComponent,
     CategoryComponent
   ],
+
   imports: [
     HttpClientModule,
     BrowserModule,
