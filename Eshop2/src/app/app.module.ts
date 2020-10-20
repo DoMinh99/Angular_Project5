@@ -21,7 +21,6 @@ import { catchError, retry } from 'rxjs/internal/operators';
 @NgModule({
   declarations: [
     AppComponent,
-    MainComponent,
     AboutComponent,
     SharedComponent,
     LoginComponent,
@@ -29,7 +28,8 @@ import { catchError, retry } from 'rxjs/internal/operators';
     SearchComponent,
     HeaderComponent,
     FooterComponent,
-    CategoryComponent
+    CategoryComponent,
+    MainComponent
   ],
 
   imports: [

@@ -1,9 +1,9 @@
 import { BaseComponent } from './../lib/base-component';
 import { Component, OnInit, Injector } from '@angular/core';
 import { Observable } from 'rxjs';
-import { catchError, retry } from 'rxjs/internal/operators';
-import { catchError, retry } from 'rxjs/operators';
 
+import 'rxjs/internal/operators';
+import 'rxjs/operators';
 import 'rxjs/add/observable/combineLatest';
 import 'rxjs/add/operator/takeUntil';
 
@@ -25,11 +25,12 @@ export class MainComponent extends BaseComponent implements OnInit {
       .subscribe(
         (res) => {
           this.list_item = res[0];
-          setTimeout(() => {
-            this.loadScripts();
-          });
+            setTimeout(() => {
+        this.loadScripts();
+      });
         },
         (err) => {}
+
       );
   }
   addToCart(it) {

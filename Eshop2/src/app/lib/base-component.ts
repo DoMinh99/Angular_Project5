@@ -3,9 +3,10 @@ import { map } from 'rxjs/operators';
 import { FileUpload } from 'primeng/fileupload';
 import { ApiService } from '../lib/api.service';
 import { ActivatedRoute } from '@angular/router';
-import { Injector } from '@angular/core';
+import { Injector, Renderer2 } from '@angular/core';
 export class BaseComponent {
    public genders: any;
+
    public roles: any;
    public locale_vn:any;
    public today: any;
@@ -13,7 +14,9 @@ export class BaseComponent {
    public unsubscribe = new Subject();
    public _api: ApiService;
    public _route: ActivatedRoute;
+      public _renderer:any;
    constructor(injector: Injector) { 
+    this._renderer = injector.get(Renderer2);
           this.today = new Date();
           this.dateFormat = "dd/mm/yy";
           this.genders =  [
@@ -87,6 +90,26 @@ export class BaseComponent {
           };
           this._api = injector.get(ApiService);
           this._route = injector.get(ActivatedRoute);
+      }
+      public loadScripts() {
+        this.renderExternalScript('assets/js/main.js').onload = () => {
+        }
+        this.renderExternalScript('assets/js/vendor/jquery-3.5.1.min.js').onload = () => {
+        }
+        this.renderExternalScript('assets/js/vendor/modernizr-3.7.1.min.js').onload = () => {
+        }
+        this.renderExternalScript('assets/js/plugins.min.js').onload = () => {
+        }
+       
+      }
+  public renderExternalScript(src: string): HTMLScriptElement {
+        const script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = src;
+        script.async = true;
+        script.defer = true;
+        this._renderer.appendChild(document.body, script);
+        return script;
       }
    public getEncodeFromImage(fileUpload: FileUpload) {
         if (fileUpload) {
