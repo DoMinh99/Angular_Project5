@@ -1,1522 +1,1144 @@
+
 (function ($) {
-	'use strict';
-	/*-----------------------------
-		Hiraola's Window When Loading
----------------------------------*/
-	$(window).on('load', function () {
-		var wind = $(window);
-		/* ----------------------------------------------------------------
-			[ Preloader ]
------------------------------------------------------------------*/
+    "use strict";
+    /*--document ready functions--*/
+    jQuery(document).ready(function ($) {
 
-		$('.loading').fadeOut(500);
-	});
-	/*----------------------------------------*/
-	/* Hiraola's Newsletter Popup
-/*----------------------------------------*/
-	setTimeout(function () {
-		$('.popup_wrapper').css({
-			opacity: '1',
-			visibility: 'visible'
-		});
-		$('.popup_off').on('click', function () {
-			$('.popup_wrapper').fadeOut(500);
-		});
-	}, 5000);
-	/*----------------------------------------*/
-	/*  Hiraola's Sticky Menu Activation
-/*----------------------------------------*/
-	$(window).on('scroll', function () {
-		if ($(this).scrollTop() > 300) {
-			$('.header-sticky').addClass('sticky');
-		} else {
-			$('.header-sticky').removeClass('sticky');
-		}
-	});
-	/*----------------------------------------*/
-	/*  Hiraola's Main Slider
-/*----------------------------------------*/
-	$('.main-slider').slick({
-		infinite: true,
-		arrows: true,
-		autoplay: true,
-		fade: true,
-		dots: true,
-		autoplaySpeed: 7000,
-		speed: 1000,
-		adaptiveHeight: true,
-		easing: 'ease-in-out',
-		pauseOnHover : false,
-		pauseOnFocus : false,
-		slidesToShow: 1,
-		slidesToScroll: 1,
-		prevArrow: '<button class="slick-prev"><i class="ion-ios-arrow-back"></i></button>',
-		nextArrow: '<button class="slick-next"><i class="ion-ios-arrow-forward"></i></button>'
-	});
+    /*---------------------
+        Nice Select
+    --------------------- */
+    $('select').niceSelect(); 
 
-	/*----------------------------------------*/
-	/*  Toolbar Button
-/*----------------------------------------*/
-	$('.toolbar-btn').on('click', function (e) {
-		e.preventDefault();
-		e.stopPropagation();
-		var $this = $(this);
-		var target = $this.attr('href');
-		var prevTarget = $this.parent().siblings().children('.toolbar-btn').attr('href');
-		$(target).toggleClass('open');
-		$(prevTarget).removeClass('open');
-	});
+    /*---------------------
+        Cart Dropdown 
+    --------------------- */
+    var iconCart = $('.mini-cart-warp');
+    iconCart.on('click', function() {
+        $('.mini-cart-content').toggleClass('cart-visible');
+    });
+    /*---------------------
+        Toggle Search Bar
+    --------------------- */
+    $(".search_list > a").on("click", function() {
+        $(this).toggleClass('active');
+        $('.dropdown_search').slideToggle('medium');
+    }); 
 
-	/**********************
-	 *Close Button Actions
-	 ***********************/
+ 
 
-	$('.btn-close').on('click', function (e) {
-		e.preventDefault();
-		var $this = $(this);
-		$this.parents('.open').removeClass('open');
-	});
-	/*----------------------------------------*/
-	/*  Hiraola's Offcanvas
-/*----------------------------------------*/
-	/*Variables*/
-	var $offcanvasNav = $('.offcanvas-menu, .offcanvas-minicart_menu, .offcanvas-search_menu, .mobile-menu'),
-		$offcanvasNavWrap = $(
-			'.offcanvas-menu_wrapper, .offcanvas-minicart_wrapper, .offcanvas-search_wrapper, .mobile-menu_wrapper'
-		),
-		$offcanvasNavSubMenu = $offcanvasNav.find('.sub-menu'),
-		$menuToggle = $('.menu-btn'),
-		$menuClose = $('.btn-close');
+    /*---------------------
+        Mobile Menu Active
+    --------------------- */
+    $('#mobile-menu-active').meanmenu({
+        meanScreenWidth: "991",
+        meanMenuContainer: ".mobile-menu",
+    });
+    
 
-	/*Add Toggle Button With Off Canvas Sub Menu*/
-	$offcanvasNavSubMenu.parent().prepend('<span class="menu-expand"><i class="ion-ios-plus-empty"></i></span>');
+    /*---------------------
+        Main Slider Active
+    --------------------- */
+    $('.slider-active-3').owlCarousel({
+        loop: true,
+        nav: false,
+        dots:true,
+        autoplay: true,
+        autoplayTimeout: 5000,
+        animateOut: 'fadeOut',
+        animateIn: 'fadeIn',
+        item: 1,
+        responsive: {
+            0: {
+                items: 1
+            },
+            768: {
+                items: 1
+            },
+            1000: {
+                items: 1
+            }
+        }
+    })  
 
-	/*Close Off Canvas Sub Menu*/
-	$offcanvasNavSubMenu.slideUp();
+    /*---------------------
+        Main Slider Active
+    --------------------- */
+    $('.slider-home-16').owlCarousel({
+        loop: true,
+        nav: true,
+        dots:false,
+        autoplay: true,
+        autoplayTimeout: 5000,
+        animateOut: 'fadeOut',
+        animateIn: 'fadeIn',
+        item: 1,
+        responsive: {
+            0: {
+                items: 1
+            },
+            768: {
+                items: 1
+            },
+            1000: {
+                items: 1
+            }
+        }
+    })
 
-	/*Category Sub Menu Toggle*/
-	$offcanvasNav.on('click', 'li a, li .menu-expand', function (e) {
-		var $this = $(this);
-		if (
-			$this.parent().attr('class').match(/\b(menu-item-has-children|has-children|has-sub-menu)\b/) &&
-			($this.attr('href') === '#' || $this.attr('href') === '' || $this.hasClass('menu-expand'))
-		) {
-			e.preventDefault();
-			if ($this.siblings('ul:visible').length) {
-				$this.siblings('ul').slideUp('slow');
-			} else {
-				$this.closest('li').siblings('li').find('ul:visible').slideUp('slow');
-				$this.closest('li').siblings('li').removeClass('menu-open');
-				$this.siblings('ul').slideDown('slow');
-				$this.parent().siblings().children('ul').slideUp();
-			}
-		}
-		if ($this.is('a') || $this.is('span') || $this.attr('class').match(/\b(menu-expand)\b/)) {
-			$this.parent().toggleClass('menu-open');
-		} else if ($this.is('li') && $this.attr('class').match(/\b('menu-item-has-children')\b/)) {
-			$this.toggleClass('menu-open');
-		}
-	});
+    /*---------------------------
+       Best Sell Slider Active
+    ------------------------------ */
+    $('.best-sell-slider').owlCarousel({
+            autoplay :   false,
+            loop: false,
+            smartSpeed : 1000,
+            nav :  true ,
+            dots :  false ,
+            margin:30,
+            responsive:{
+                0:{
+                    items:1,
+                    autoplay: true,
+                    loop: true,
+                },
+                360:{
+                    items:1,
+                    autoplay: true,
+                    loop: true,
+                },
+                500:{
+                    items:2,
+                    autoplay: true,
+                    loop: true,
+    
+                },
+                768:{
+                    items:3,
+                },
+                992:{
+                    items:4,
+                },
+                1200:{
+                    items:5,
+                }
+            }
+    })
 
 
-	$('.btn-close').on('click', function (e) {
-		e.preventDefault();
-		$('.mobile-menu .sub-menu').slideUp();
-		$('.mobile-menu .menu-item-has-children').removeClass('menu-open');
-	})
-	/*----------------------------------------*/
-	/*  Category Menu
-/*----------------------------------------*/
-	$('.rx-parent').on('click', function () {
-		$('.rx-child').slideToggle();
-		$(this).toggleClass('rx-change');
-	});
-	//    category heading
-	$('.category-heading').on('click', function () {
-		$('.category-menu-list').slideToggle(900);
-		$('.cat-mega-menu, .right-menu > ul').slideUp();
-		$('.menu-expand').removeClass('active');
-	});
-	/*-- Category Menu Toggles --*/
-	function categorySubMenuToggle() {
-		var screenSize = $(window).width();
-		if (screenSize <= 991) {
-			$('#cate-toggle .right-menu > a').prepend('<i class="expand menu-expand"></i>');
-			$('.category-menu .right-menu ul').slideUp();
-		} else {
-			$('.category-menu .right-menu > a i').remove();
-			$('.category-menu .right-menu ul').slideDown();
-		}
-	}
-	categorySubMenuToggle();
-	$(window).resize(categorySubMenuToggle);
-	/*-- Category Sub Menu --*/
-	function categoryMenuHide() {
-		var screenSize = $(window).width();
-		if (screenSize <= 991) {
-			$('.category-menu-list').hide();
-		} else {
-			$('.category-menu-list').show();
-		}
-	}
-	categoryMenuHide();
-	$(window).resize(categoryMenuHide);
-	$('.category-menu-hidden').find('.category-menu-list').hide();
-	$('.category-menu-list').on('click', 'li a, li a .menu-expand', function (e) {
-		var $a = $(this).hasClass('menu-expand') ? $(this).parent() : $(this);
-		$(this).toggleClass('active');
-		$(this).children('.menu-expand').toggleClass('active');
-		if ($a.parent().hasClass('right-menu')) {
-			if ($a.attr('href') === '#' || $(this).hasClass('menu-expand')) {
-				if ($a.siblings('ul:visible').length > 0) $a.siblings('ul').slideUp();
-				else {
-					$(this).parents('li').siblings('li').find('ul:visible').slideUp();
-					$a.siblings('ul').slideDown();
-				}
-			}
-		}
-		if ($(this).hasClass('menu-expand') || $a.attr('href') === '#') {
-			e.preventDefault();
-			return false;
-		}
-	});
+    /*---------------------------
+       Best Sell Slider 2 Active
+    ------------------------------ */
+    $('.best-sell-slider-2').owlCarousel({
+            autoplay :   false,
+            loop: false,
+            smartSpeed : 1000,
+            nav :  true ,
+            dots :  false ,
+            margin:0,
+            responsive:{
+                0:{
+                    items:1,
+                    autoplay: true,
+                    loop: true,
+                },
+                360:{
+                    items:1,
+                    autoplay: true,
+                    loop: true,
+                },
+                500:{
+                    items:2,
+                    autoplay: true,
+                    loop: true,
+    
+                },
+                768:{
+                    items:3,
+                },
+                992:{
+                    items:4,
+                },
+                1200:{
+                    items:5,
+                }
+            }
+    })
 
-	/*----------------------------------------*/
-	/*  Nice Select
-/*----------------------------------------*/
-	$(document).ready(function () {
-		$('.nice-select').niceSelect();
-	});
-	/*----------------------------------------*/
-	/*  Hiraola's Product Slider
-/*----------------------------------------*/
-	$('.hiraola-product_slider').slick({
-		infinite: true,
-		arrows: true,
-		dots: false,
-		speed: 2000,
-		slidesToShow: 5,
-		slidesToScroll: 1,
-		prevArrow: '<button class="slick-prev"><i class="ion-ios-arrow-back"></i></button>',
-		nextArrow: '<button class="slick-next"><i class="ion-ios-arrow-forward"></i></button>',
-		responsive: [{
-				breakpoint: 1501,
-				settings: {
-					slidesToShow: 5
-				}
-			},
-			{
-				breakpoint: 1200,
-				settings: {
-					slidesToShow: 4
-				}
-			},
-			{
-				breakpoint: 992,
-				settings: {
-					slidesToShow: 3
-				}
-			},
-			{
-				breakpoint: 768,
-				settings: {
-					slidesToShow: 2
-				}
-			},
-			{
-				breakpoint: 575,
-				settings: {
-					slidesToShow: 1
-				}
-			}
-		]
-	});
-	/*----------------------------------------*/
-	/*  Hiraola's Product Slider Two
-/*----------------------------------------*/
-	$('.hiraola-product_slider-2').slick({
-		infinite: true,
-		arrows: true,
-		dots: false,
-		speed: 2000,
-		slidesToShow: 3,
-		slidesToScroll: 1,
-		prevArrow: '<button class="slick-prev"><i class="ion-ios-arrow-back"></i></button>',
-		nextArrow: '<button class="slick-next"><i class="ion-ios-arrow-forward"></i></button>',
-		responsive: [{
-				breakpoint: 1501,
-				settings: {
-					slidesToShow: 3
-				}
-			},
-			{
-				breakpoint: 1200,
-				settings: {
-					slidesToShow: 3
-				}
-			},
-			{
-				breakpoint: 992,
-				settings: {
-					slidesToShow: 2
-				}
-			},
-			{
-				breakpoint: 768,
-				settings: {
-					slidesToShow: 2
-				}
-			},
-			{
-				breakpoint: 575,
-				settings: {
-					slidesToShow: 1
-				}
-			}
-		]
-	});
-	/*----------------------------------------*/
-	/*  Hiraola's Product Slider Three
-/*----------------------------------------*/
-	$('.hiraola-product_slider-3').slick({
-		infinite: true,
-		arrows: true,
-		dots: false,
-		speed: 2000,
-		slidesToShow: 4,
-		slidesToScroll: 1,
-		prevArrow: '<button class="slick-prev"><i class="ion-ios-arrow-back"></i></button>',
-		nextArrow: '<button class="slick-next"><i class="ion-ios-arrow-forward"></i></button>',
-		responsive: [{
-				breakpoint: 1501,
-				settings: {
-					slidesToShow: 3
-				}
-			},
-			{
-				breakpoint: 1200,
-				settings: {
-					slidesToShow: 3
-				}
-			},
-			{
-				breakpoint: 992,
-				settings: {
-					slidesToShow: 2
-				}
-			},
-			{
-				breakpoint: 768,
-				settings: {
-					slidesToShow: 2
-				}
-			},
-			{
-				breakpoint: 575,
-				settings: {
-					slidesToShow: 1
-				}
-			}
-		]
-	});
-	/*----------------------------------------*/
-	/*  Hiraola's Special Product Slider
-/*----------------------------------------*/
-	$('.hiraola-special-product_slider').slick({
-		infinite: true,
-		arrows: true,
-		dots: false,
-		speed: 2000,
-		slidesToShow: 1,
-		slidesToScroll: 1,
-		prevArrow: '<button class="slick-prev"><i class="ion-ios-arrow-back"></i></button>',
-		nextArrow: '<button class="slick-next"><i class="ion-ios-arrow-forward"></i></button>',
-		responsive: [{
-				breakpoint: 1501,
-				settings: {
-					slidesToShow: 1
-				}
-			},
-			{
-				breakpoint: 1200,
-				settings: {
-					slidesToShow: 1
-				}
-			},
-			{
-				breakpoint: 992,
-				settings: {
-					slidesToShow: 1
-				}
-			},
-			{
-				breakpoint: 768,
-				settings: {
-					slidesToShow: 1
-				}
-			},
-			{
-				breakpoint: 575,
-				settings: {
-					slidesToShow: 1
-				}
-			}
-		]
-	});
-	/*----------------------------------------*/
-	/*  Hiraola's Trending Product Slider
-/*----------------------------------------*/
-	$('.hiraola-trending-product_slider').slick({
-		infinite: true,
-		arrows: false,
-		dots: false,
-		speed: 2000,
-		slidesToShow: 3,
-		slidesToScroll: 1,
-		prevArrow: '<button class="slick-prev"><i class="ion-ios-arrow-back"></i></button>',
-		nextArrow: '<button class="slick-next"><i class="ion-ios-arrow-forward"></i></button>',
-		responsive: [{
-				breakpoint: 1501,
-				settings: {
-					slidesToShow: 3
-				}
-			},
-			{
-				breakpoint: 1200,
-				settings: {
-					slidesToShow: 2
-				}
-			},
-			{
-				breakpoint: 992,
-				settings: {
-					slidesToShow: 2
-				}
-			},
-			{
-				breakpoint: 768,
-				settings: {
-					slidesToShow: 1
-				}
-			},
-			{
-				breakpoint: 575,
-				settings: {
-					slidesToShow: 1
-				}
-			}
-		]
-	});
-	/*----------------------------------------*/
-	/*  Hiraola's Blog Slider
-/*----------------------------------------*/
-	$('.hiraola-blog_slider').slick({
-		infinite: true,
-		arrows: false,
-		dots: false,
-		speed: 2000,
-		slidesToShow: 3,
-		slidesToScroll: 1,
-		prevArrow: '<button class="slick-prev"><i class="ion-ios-arrow-back"></i></button>',
-		nextArrow: '<button class="slick-next"><i class="ion-ios-arrow-forward"></i></button>',
-		responsive: [{
-				breakpoint: 1501,
-				settings: {
-					slidesToShow: 3
-				}
-			},
-			{
-				breakpoint: 1200,
-				settings: {
-					slidesToShow: 2
-				}
-			},
-			{
-				breakpoint: 992,
-				settings: {
-					slidesToShow: 2
-				}
-			},
-			{
-				breakpoint: 768,
-				settings: {
-					slidesToShow: 1
-				}
-			},
-			{
-				breakpoint: 575,
-				settings: {
-					slidesToShow: 1
-				}
-			}
-		]
-	});
-	/*----------------------------------------*/
-	/*  Hiraola's Single Blog Slider
-/*----------------------------------------*/
-	$('.hiraola-single-blog_slider').slick({
-		infinite: true,
-		arrows: false,
-		dots: false,
-		speed: 2000,
-		slidesToShow: 1,
-		slidesToScroll: 1,
-		fade: true,
-		prevArrow: '<button class="slick-prev"><i class="ion-ios-arrow-back"></i></button>',
-		nextArrow: '<button class="slick-next"><i class="ion-ios-arrow-forward"></i></button>',
-		responsive: [{
-				breakpoint: 1501,
-				settings: {
-					slidesToShow: 1
-				}
-			},
-			{
-				breakpoint: 1200,
-				settings: {
-					slidesToShow: 1
-				}
-			},
-			{
-				breakpoint: 992,
-				settings: {
-					slidesToShow: 1
-				}
-			},
-			{
-				breakpoint: 768,
-				settings: {
-					slidesToShow: 1
-				}
-			},
-			{
-				breakpoint: 575,
-				settings: {
-					slidesToShow: 1
-				}
-			}
-		]
-	});
-	/*----------------------------------------*/
-	/*  Hiraola's Testimonial Slider
-/*----------------------------------------*/
-	$('.hiraola-testimonial_slider').slick({
-		infinite: true,
-		arrows: true,
-		dots: false,
-		speed: 2000,
-		slidesToShow: 1,
-		slidesToScroll: 1,
-		centerMode: true,
-		centerPadding: '450px',
-		focusOnSelect: true,
-		prevArrow: '<button class="slick-prev"><i class="ion-ios-arrow-back"></i></button>',
-		nextArrow: '<button class="slick-next"><i class="ion-ios-arrow-forward"></i></button>',
-		responsive: [{
-				breakpoint: 1501,
-				settings: {
-					slidesToShow: 1,
-					centerPadding: '290px'
-				}
-			},
-			{
-				breakpoint: 1200,
-				settings: {
-					slidesToShow: 1,
-					centerPadding: '230px'
-				}
-			},
-			{
-				breakpoint: 992,
-				settings: {
-					slidesToShow: 1,
-					centerPadding: '50px'
-				}
-			},
-			{
-				breakpoint: 768,
-				settings: {
-					slidesToShow: 1,
-					centerPadding: '30px'
-				}
-			},
-			{
-				breakpoint: 575,
-				settings: {
-					slidesToShow: 1,
-					centerPadding: '30px'
-				}
-			}
-		]
-	});
-	/*----------------------------------------*/
-	/*  Hiraola's Testimonial Slider Two
-/*----------------------------------------*/
-	$('.testimonial-img_slider').slick({
-		infinite: true,
-		arrows: false,
-		dots: false,
-		centerMode: true,
-		focusOnSelect: true,
-		centerPadding: '170px',
-		asNavFor: '.testimonial-content_slider',
-		prevArrow: '<button class="slick-prev"><i class="ion-ios-arrow-back"></i></button>',
-		nextArrow: '<button class="slick-next"><i class="ion-ios-arrow-forward"></i></button>',
-		responsive: [{
-				breakpoint: 1501,
-				settings: {
-					slidesToShow: 1
-				}
-			},
-			{
-				breakpoint: 1200,
-				settings: {
-					slidesToShow: 1,
-					centerPadding: '105px'
-				}
-			},
-			{
-				breakpoint: 992,
-				settings: {
-					slidesToShow: 1,
-					centerPadding: '210px'
-				}
-			},
-			{
-				breakpoint: 768,
-				settings: {
-					slidesToShow: 1,
-					centerPadding: '150px'
-				}
-			},
-			{
-				breakpoint: 575,
-				settings: {
-					slidesToShow: 1,
-					centerPadding: '130px'
-				}
-			},
-			{
-				breakpoint: 479,
-				settings: {
-					slidesToShow: 1,
-					centerPadding: '80px'
-				}
-			}
-		]
-	});
-	$('.testimonial-content_slider').slick({
-		slidesToShow: 1,
-		slidesToScroll: 1,
-		asNavFor: '.testimonial-img_slider',
-		arrows: false,
-		fade: true,
-		dots: true
-	});
-	/*----------------------------------------*/
-	/*  Hiraola's Brand Product Slider
-/*----------------------------------------*/
-	$('.hiraola-brand-product_slider').slick({
-		infinite: true,
-		arrows: false,
-		dots: false,
-		speed: 2000,
-		slidesToShow: 4,
-		slidesToScroll: 1,
-		prevArrow: '<button class="slick-prev"><i class="ion-ios-arrow-back"></i></button>',
-		nextArrow: '<button class="slick-next"><i class="ion-ios-arrow-forward"></i></button>',
-		responsive: [{
-				breakpoint: 1501,
-				settings: {
-					slidesToShow: 4
-				}
-			},
-			{
-				breakpoint: 1200,
-				settings: {
-					slidesToShow: 3
-				}
-			},
-			{
-				breakpoint: 992,
-				settings: {
-					slidesToShow: 3
-				}
-			},
-			{
-				breakpoint: 768,
-				settings: {
-					slidesToShow: 2
-				}
-			},
-			{
-				breakpoint: 575,
-				settings: {
-					slidesToShow: 1
-				}
-			}
-		]
-	});
-	/*  Hiraola's Product Tab Slider Two
-/*----------------------------------------*/
-	$('.hiraola-product-tab_slider-2').slick({
-		infinite: true,
-		arrows: true,
-		dots: false,
-		speed: 2000,
-		slidesToShow: 5,
-		slidesToScroll: 1,
-		prevArrow: '<button class="slick-prev"><i class="ion-ios-arrow-back"></i></button>',
-		nextArrow: '<button class="slick-next"><i class="ion-ios-arrow-forward"></i></button>',
-		responsive: [{
-				breakpoint: 1501,
-				settings: {
-					slidesToShow: 4
-				}
-			},
-			{
-				breakpoint: 1200,
-				settings: {
-					slidesToShow: 3
-				}
-			},
-			{
-				breakpoint: 992,
-				settings: {
-					slidesToShow: 2
-				}
-			},
-			{
-				breakpoint: 768,
-				settings: {
-					slidesToShow: 1
-				}
-			},
-			{
-				breakpoint: 575,
-				settings: {
-					slidesToShow: 1
-				}
-			}
-		]
-	});
-	/*----------------------------------------*/
-	/*  Hiraola's Product Tab Slider Three
-/*----------------------------------------*/
-	$('.hiraola-product-tab_slider-3').slick({
-		infinite: true,
-		arrows: true,
-		dots: false,
-		speed: 2000,
-		slidesToShow: 4,
-		slidesToScroll: 1,
-		prevArrow: '<button class="slick-prev"><i class="ion-ios-arrow-back"></i></button>',
-		nextArrow: '<button class="slick-next"><i class="ion-ios-arrow-forward"></i></button>',
-		responsive: [{
-				breakpoint: 1501,
-				settings: {
-					slidesToShow: 4
-				}
-			},
-			{
-				breakpoint: 1200,
-				settings: {
-					slidesToShow: 3
-				}
-			},
-			{
-				breakpoint: 992,
-				settings: {
-					slidesToShow: 2
-				}
-			},
-			{
-				breakpoint: 768,
-				settings: {
-					slidesToShow: 1
-				}
-			},
-			{
-				breakpoint: 575,
-				settings: {
-					slidesToShow: 1
-				}
-			}
-		]
-	});
-	/*----------------------------------------*/
-	/*  Hiraola's List Product Slider
-/*----------------------------------------*/
-	$('.list-product_slider').slick({
-		infinite: true,
-		arrows: false,
-		dots: false,
-		speed: 2000,
-		slidesToShow: 1,
-		slidesToScroll: 1,
-		rows: 3,
-		prevArrow: '<button class="slick-prev"><i class="ion-ios-arrow-back"></i></button>',
-		nextArrow: '<button class="slick-next"><i class="ion-ios-arrow-forward"></i></button>',
-		responsive: [{
-				breakpoint: 1501,
-				settings: {
-					slidesToShow: 1
-				}
-			},
-			{
-				breakpoint: 1200,
-				settings: {
-					slidesToShow: 1
-				}
-			},
-			{
-				breakpoint: 992,
-				settings: {
-					slidesToShow: 2
-				}
-			},
-			{
-				breakpoint: 768,
-				settings: {
-					slidesToShow: 1
-				}
-			},
-			{
-				breakpoint: 575,
-				settings: {
-					slidesToShow: 1
-				}
-			}
-		]
-	});
-	/*----------------------------------------*/
-	/* Hiraola's Countdown
-/*----------------------------------------*/
-	$('.hiraola-countdown').countdown('2020/12/01', function (event) {
-		$(this).html(
-			event.strftime(
-				'<div class="count"><span class="count-amount">%D</span><span class="count-period">Days</span></div><div class="count"><span class="count-amount">%H</span><span class="count-period">Hrs</span></div><div class="count"><span class="count-amount">%M</span><span class="count-period">Mins</span></div><div class="count"><span class="count-amount">%S</span><span class="count-period">Secs</span></div>'
-			)
-		);
-	});
+    /*---------------------------
+       Category Slider Active
+    ------------------------------ */
+    $('.category-slider').owlCarousel({
+            autoplay :   false,
+            smartSpeed : 1000,
+            loop: false,
+            nav :  true ,
+            dots :  false ,
+            margin:30,
+            responsive:{
+                0:{
+                    items:1,
+                    autoplay: true,
+                    loop: true,
+                },
+                360:{
+                    items:1,
+                    autoplay: true,
+                    loop: true,
+                },
+                576:{
+                    items:1,
+                    autoplay: true,
+                    loop: true,
+    
+                },
+                767:{
+                    items:2,
+                },
+                992:{
+                    items:3,
+                },
+                1200:{
+                    items:3,
+                }
+            }
+    })
+    /*---------------------------
+       Best Sell Slider Active
+    ------------------------------ */
+    $('.category-slider-2').owlCarousel({
+            autoplay :   false,
+            loop: false,
+            smartSpeed : 1000,
+            nav :  true ,
+            dots :  false ,
+            margin:30,
+            responsive:{
+                0:{
+                    items:1,
+                    autoplay: true,
+                    loop: true,
+                },
+                360:{
+                    items:1,
+                    autoplay: true,
+                    loop: true,
+                },
+                500:{
+                    items:2,
+                    autoplay: true,
+                    loop: true,
+    
+                },
+                768:{
+                    items:3,
+                },
+                992:{
+                    items:4,
+                },
+                1200:{
+                    items:5,
+                }
+            }
+    })
 
-	/*---------------------------------------------*/
-	/*  Hiraola's Brand Slider
-/*----------------------------------------------*/
-	$('.hiraola-brand_slider').slick({
-		infinite: true,
-		arrows: true,
-		dots: false,
-		speed: 2000,
-		slidesToShow: 6,
-		slidesToScroll: 1,
-		prevArrow: '<button class="slick-prev"><i class="ion-ios-arrow-back"></i></button>',
-		nextArrow: '<button class="slick-next"><i class="ion-ios-arrow-forward"></i></button>',
-		responsive: [{
-				breakpoint: 1501,
-				settings: {
-					slidesToShow: 6
-				}
-			},
-			{
-				breakpoint: 1200,
-				settings: {
-					slidesToShow: 5
-				}
-			},
-			{
-				breakpoint: 992,
-				settings: {
-					slidesToShow: 4
-				}
-			},
-			{
-				breakpoint: 768,
-				settings: {
-					slidesToShow: 3
-				}
-			},
-			{
-				breakpoint: 576,
-				settings: {
-					slidesToShow: 2
-				}
-			},
-			{
-				breakpoint: 480,
-				settings: {
-					slidesToShow: 1
-				}
-			}
-		]
-	});
-	/*----------------------------------
-	/* 	Instafeed active 
-------------------------------------*/
-	if ($('#Instafeed').length) {
-		var feed = new Instafeed({
-			get: 'user',
-			userId: 6665768655,
-			accessToken: '6665768655.1677ed0.313e6c96807c45d8900b4f680650dee5',
-			target: 'Instafeed',
-			resolution: 'low_resolution',
-			limit: 6,
-			template: '<li><a href="{{link}}" target="_new"><img src="{{image}}" /></a></li>'
-		});
-		feed.run();
-	}
 
-	/*----------------------------------------*/
-	/*  Hiraola's Scroll To Top
-/*----------------------------------------*/
-	$.scrollUp({
-		scrollText: '<i class="fa fa-chevron-up"></i>',
-		easingType: 'linear',
-		scrollSpeed: 900
-	});
+    /*---------------------------
+       Hot Deal Slider Active
+    ------------------------------ */
+    $('.hot-deal').owlCarousel({
+            autoplay :   false,
+            smartSpeed : 1000,
+            nav :  true ,
+            loop: false,
+            dots :  false ,
+            items:1,
+            margin:0,
+            responsive:{
+                0:{
+                    items:1,
+                    autoplay: true,
+                    loop: true,
+                },
+                360:{
+                    items:1,
+                    autoplay: true,
+                    loop: true,
+                },
+            }
+    })
 
-	/*----------------------------------------*/
-	/*  Cart Plus Minus Button
-/*----------------------------------------*/
-	$('.cart-plus-minus').append(
-		'<div class="dec qtybutton"><i class="fa fa-angle-down"></i></div><div class="inc qtybutton"><i class="fa fa-angle-up"></i></div>'
-	);
-	$('.qtybutton').on('click', function () {
-		var $button = $(this);
-		var oldValue = $button.parent().find('input').val();
-		if ($button.hasClass('inc')) {
-			var newVal = parseFloat(oldValue) + 1;
-		} else {
-			// Don't allow decrementing below zero
-			if (oldValue > 1) {
-				var newVal = parseFloat(oldValue) - 1;
-			} else {
-				newVal = 1;
-			}
-		}
-		$button.parent().find('input').val(newVal);
-	});
+    /*---------------------------
+       New Product Slider Active
+    ------------------------------ */
+    $('.new-product-slider').owlCarousel({
+            autoplay :   false,
+            smartSpeed : 1000,
+            nav :  true ,
+            loop: false,
+            dots :  false ,
+            items:4,
+            margin:30,
+            responsive:{
+                0:{
+                    items:1,
+                    autoplay: true,
+                    loop: true,
+                },
+                    
+                360:{
+                    items:1,
+                    autoplay: true,
+                    loop: true,
+                },
+                500:{
+                    items:2,
+                    autoplay: true,
+                    loop: true,
+    
+                },
+                768:{
+                    items:2,
+                },
+                992:{
+                    items:2,
+                },
+                1024:{
+                    items:2,
+                },
+                1200:{
+                    items:3,
+                },
+                1300:{
+                    items:4,
+                }
+            }
+    })
 
-	/*----------------------------------------*/
-	/* Toggle Function Active
-/*----------------------------------------*/
-	// showlogin toggle
-	$('#showlogin').on('click', function () {
-		$('#checkout-login').slideToggle(900);
-	});
-	// showlogin toggle
-	$('#showcoupon').on('click', function () {
-		$('#checkout_coupon').slideToggle(900);
-	});
-	// showlogin toggle
-	$('#cbox').on('click', function () {
-		$('#cbox-info').slideToggle(900);
-	});
 
-	// showlogin toggle
-	$('#ship-box').on('click', function () {
-		$('#ship-box-info').slideToggle(1000);
-	});
+    /*---------------------------
+       New Product Slider Active
+    ------------------------------ */
+    $('.new-product-slider-2').owlCarousel({
+            autoplay :   false,
+            smartSpeed : 1000,
+            nav :  true ,
+            loop: false,
+            dots :  false ,
+            items:4,
+            margin:0,
+            responsive:{
+                0:{
+                    items:1,
+                    autoplay: true,
+                    loop: true,
+                },
+                    
+                360:{
+                    items:1,
+                    autoplay: true,
+                    loop: true,
+                },
+                500:{
+                    items:2,
+                    autoplay: true,
+                    loop: true,
+    
+                },
+                768:{
+                    items:2,
+                },
+                992:{
+                    items:2,
+                },
+                1024:{
+                    items:2,
+                },
+                1200:{
+                    items:3,
+                },
+                1300:{
+                    items:4,
+                }
+            }
+    })
 
-	/*----------------------------------------*/
-	/* FAQ Accordion
-/*----------------------------------------*/
-	$('.card-header a').on('click', function () {
-		$('.card').removeClass('actives');
-		$(this).parents('.card').addClass('actives');
-	});
+    /*---------------------------
+       Feature Product Slider Active
+    ------------------------------ */
+    $('.feature-slider').owlCarousel({
+            autoplay :   false,
+            smartSpeed : 1000,
+            nav :  true ,
+            loop: false,
+            dots :  false ,
+            items:4,
+            margin:30,
+            responsive:{
+                0:{
+                    items:1,
+                    autoplay: true,
+                    loop: true,
+                },
+                360:{
+                    items:1,
+                    autoplay: true,
+                    loop: true,
+                },
+                576:{
+                    items:1,
+                    autoplay: true,
+                    loop: true,
+    
+                },
+                768:{
+                    items:2,
+                },
+                992:{
+                    items:3,
+                },
+                1200:{
+                    items:3,
+                },
+                1300:{
+                    items:4,
+                },
+            },
+    })
 
-	/*----------------------------------------*/
-	/*  Sidebar Categories Menu Activation
-/*----------------------------------------*/
-	$('.sidebar-categories_menu li.has-sub > a').on('click', function () {
-		$(this).removeAttr('href');
-		var element = $(this).parent('li');
-		if (element.hasClass('open')) {
-			element.removeClass('open');
-			element.find('li').removeClass('open');
-			element.find('ul').slideUp();
-		} else {
-			element.addClass('open');
-			element.children('ul').slideDown();
-			element.siblings('li').children('ul').slideUp();
-			element.siblings('li').removeClass('open');
-			element.siblings('li').find('li').removeClass('open');
-			element.siblings('li').find('ul').slideUp();
-		}
-	});
+    /*---------------------------
+       Recent Product Slider Active
+    ------------------------------ */
+    $('.recent-product-slider').owlCarousel({
+            autoplay :   false,
+            smartSpeed : 1000,
+            nav :  true ,
+            loop: false,
+            dots :  false ,
+            items:4,
+            margin:30,
+            responsive:{
+                0:{
+                    items:1,
+                    autoplay: true,
+                    loop: true,
+                },
+                360:{
+                    items:1,
+                    autoplay: true,
+                    loop: true,
+                },
+                500:{
+                    items:2,
+                    autoplay: true,
+                    loop: true,
+    
+                },
+                768:{
+                    items:2,
+                },
+                992:{
+                    items:4,
+                },
+                1200:{
+                    items:5,
+                },
+                1300:{
+                    items:6,
+                }
+            }
+    })
 
-	/*---------------------------------------------*/
-	/*  Hiraola'sCounterUp
-/*----------------------------------------------*/
-	$('.count').counterUp({
-		delay: 10,
-		time: 1000
-	});
+    /*---------------------------
+       Brand Slider Active
+    ------------------------------ */
+    $('.brand-slider').owlCarousel({
+            autoplay :   false,
+            nav :  true ,
+            loop: false,
+            smartSpeed : 1000,
+            dots :  false ,
+            items:5,
+            responsive:{
+                0:{
+                    items:1,
+                    autoplay: true,
+                    loop: true,
+                },
+                360:{
+                    items:1,
+                    autoplay: true,
+                    loop: true,
+                },
+                576:{
+                    items:2,
+                    autoplay: true,
+                    loop: true,
+    
+                },
+                768:{
+                    items:3,
+                },
+                992:{
+                    items:4,
+                },
+                1200:{
+                    items:5,
+                }
+            }
+    })
 
-	/*----------------------------------------*/
-	/*  Hiraola's Product View Mode
-/*----------------------------------------*/
-	function porductViewMode() {
-		$(window).on({
-			load: function () {
-				var activeChild = $('.product-view-mode a.active');
-				var firstChild = $('.product-view-mode').children().first();
-				var window_width = $(window).width();
+    /*---------------------------
+       Testimonial Slider Active
+    ------------------------------ */
+    $('.testi-slider').owlCarousel({
+            autoplay :   false,
+            nav :  false ,
+            smartSpeed : 1000,
+            dots :  true ,
+            items:2,
+            margin:30,
+            responsive:{
+                0:{
+                    items:1,
+                },
+                360:{
+                    items:1,
+                    margin:0,
+                },
+                576:{
+                    items:1,
+                    margin:0,
+    
+                },
+                768:{
+                    items:1,
+                    margin:0,
+                },
+                992:{
+                    items:2,
+                },
+                1200:{
+                    items:2,
+                }
+            }
+    })
 
-				if (window_width < 576) {
-					$('.product-view-mode a').removeClass('active');
-					$('.product-view-mode').children().first().addClass('active');
-					$('.shop-product-wrap').removeClass('gridview-3 gridview-4 gridview-5').addClass('gridview-2');
-				}
-			},
-			resize: function () {
-				var ww = $(window).width();
-				var activeChild = $('.product-view-mode a.active');
-				var firstChild = $('.product-view-mode').children().first();
-				var defaultView = $('.product-view-mode').data('default');
+    /*---------------------------
+       Blog Slider Active
+    ------------------------------ */
+    $('.blog-slider-active').owlCarousel({
+            autoplay :   false,
+            nav :  true ,
+            smartSpeed : 1000,
+            dots :  false ,
+            items:3,
+            margin:30,
+            responsive:{
+                0:{
+                    items:1,
+                    autoplay :true,
+                },
+                360:{
+                    items:1,
+                    autoplay :true,
+                },
+                576:{
+                    items:1,
+                    autoplay :true,
+                },
+                768:{
+                    items:2,
+                },
+                992:{
+                    items:2,
+                },
+                1200:{
+                    items:3,
+                }
+            }
+    })
 
-				if (ww < 1200 && ww > 575) {
-					if (activeChild.hasClass('grid-5')) {
-						$('.product-view-mode a.grid-5').removeClass('active');
-						if (defaultView == 4) {
-							$('.product-view-mode a.grid-4').addClass('active');
-							$('.shop-product-wrap')
-								.removeClass('gridview-2 gridview-3 gridview-5')
-								.addClass('gridview-4');
-						} else if (defaultView == 'list') {
-							$('.product-view-mode a.list').addClass('active');
-							$('.shop-product-wrap')
-								.removeClass('gridview-2 gridview-3 gridview-4 gridview-5')
-								.addClass('listview');
-						} else {
-							$('.product-view-mode a.grid-3').addClass('active');
-							$('.shop-product-wrap')
-								.removeClass('gridview-2 gridview-4 gridview-5')
-								.addClass('gridview-3');
-						}
-					}
-				}
+    /*----------------------------------
+       Feature Product Slider 2 Active
+    ------------------------------------ */
+    $('.feature-slider-2').owlCarousel({
+            autoplay :   false,
+            nav :  true ,
+            smartSpeed : 1000,
+            dots :  false ,
+            items:2,
+            loop:false,
+            margin:30,
+            responsive:{
+                0:{
+                    items:1,
+                    autoplay: true,
+                    loop: true,
+                },
+                360:{
+                    items:1,
+                    autoplay: true,
+                    loop: true,
+                },
+                576:{
+                    items:1,
+                    autoplay: true,
+                    loop: true,
+    
+                },
+                768:{
+                    items:2,
+                },
+                992:{
+                    items:2,
+                },
+                1000:{
+                    items:1,
+                },
+                1200:{
+                    items:1,
+                },
+                1300:{
+                    items:2,
+                }
+            }
+    })
 
-				if (ww < 768 && ww > 575) {
-					if (activeChild.hasClass('grid-4')) {
-						$('.product-view-mode a.grid-4').removeClass('active');
-						if (defaultView == 'list') {
-							$('.product-view-mode a.list').addClass('active');
-							$('.shop-product-wrap')
-								.removeClass('gridview-2 gridview-3 gridview-4 gridview-5')
-								.addClass('listview');
-						} else {
-							$('.product-view-mode a.grid-3').addClass('active');
-							$('.shop-product-wrap')
-								.removeClass('gridview-2 gridview-4 gridview-5')
-								.addClass('gridview-3');
-						}
-					}
-				}
-				if (activeChild.hasClass('list')) {} else {
-					if (ww < 576) {
-						$('.product-view-mode a').removeClass('active');
-						$('.product-view-mode').children().first().addClass('active');
-						$('.shop-product-wrap').removeClass('gridview-3 gridview-4 gridview-5').addClass('gridview-2');
-					} else {
-						if (activeChild.hasClass('grid-2')) {
-							if (ww < 1200) {
-								$('.product-view-mode a:not(:first-child)').removeClass('active');
-							} else {
-								$('.product-view-mode a').removeClass('active');
-								$('.product-view-mode a:nth-child(2)').addClass('active');
-								$('.shop-product-wrap')
-									.removeClass('gridview-2 gridview-4 gridview-5')
-									.addClass('gridview-3');
-							}
-						}
-					}
-				}
-			}
-		});
-		$('.product-view-mode a').on('click', function (e) {
-			e.preventDefault();
+    /*---------------------------
+       Feature Product Slider Active
+    ------------------------------ */
+    $('.feature-slider-3').owlCarousel({
+            autoplay :   false,
+            smartSpeed : 1000,
+            nav :  true ,
+            loop: false,
+            dots :  false ,
+            items:3,
+            margin:0,
+            responsive:{
+                0:{
+                    items:1,
+                    autoplay: true,
+                    loop: true,
+                },
+                360:{
+                    items:1,
+                    autoplay: true,
+                    loop: true,
+                },
+                576:{
+                    items:1,
+                    autoplay: true,
+                    loop: true,
+    
+                },
+                768:{
+                    items:2,
+                },
+                992:{
+                    items:3,
+                },
+                1200:{
+                    items:3,
+                },
+                1300:{
+                    items:3,
+                },
+            },
+    })
 
-			var shopProductWrap = $('.shop-product-wrap');
-			var viewMode = $(this).data('target');
 
-			$('.product-view-mode a').removeClass('active');
-			$(this).addClass('active');
-			if (viewMode == 'listview') {
-				shopProductWrap.removeClass('grid');
-			} else {
-				if (shopProductWrap.not('.grid')) shopProductWrap.addClass('grid');
-			}
-			shopProductWrap.removeClass('gridview-2 gridview-3 gridview-4 gridview-5 listview').addClass(viewMode);
-		});
-	}
-	porductViewMode();
+    /*---------------------------
+     Hot Deal Slider 2 Active
+    ------------------------------ */
+    $('.hot-deal-2').owlCarousel({
+            autoplay :   false,
+            nav :  true ,
+            smartSpeed : 1000,
+            dots :  false ,
+            items:2,
+            loop:false,
+            margin:30,
+            responsive:{
+                0:{
+                    items:1,
+                    autoplay: true,
+                    loop: true,
+                },
+                360:{
+                    items:1,
+                    autoplay: true,
+                    loop: true,
+                },
+                576:{
+                    items:1,
+                    autoplay: true,
+                    loop: true,
+    
+                },
+                768:{
+                    items:1,
+                },
+                992:{
+                    items:1,
+                },
+                1200:{
+                    items:2,
+                }
+            }
+    })
 
-	/*----------------------------------------*/
-	/*  Star Rating Js
-/*----------------------------------------*/
-	$(function () {
-		$('.star-rating').barrating({
-			theme: 'fontawesome-stars'
-		});
-	});
+    /*---------------------------
+     Hot Deal Slider 2 Active
+    ------------------------------ */
+    $('.hot-deal-3').owlCarousel({
+            autoplay :   false,
+            nav :  true ,
+            smartSpeed : 1000,
+            dots :  false ,
+            items:1,
+            loop:false,
+            margin:30,
+            responsive:{
+                0:{
+                    items:1,
+                    autoplay: true,
+                    loop: true,
+                },
+                360:{
+                    items:1,
+                    autoplay: true,
+                    loop: true,
+                },
+                576:{
+                    items:1,
+                    autoplay: true,
+                    loop: true,
+    
+                },
+                768:{
+                    items:1,
+                },
+                992:{
+                    items:1,
+                },
+                1200:{
+                    items:1,
+                }
+            }
+    })
 
-	/*-------------------------------------------------*/
-	/* Hiraola's Sticky Sidebar
-/*-------------------------------------------------*/
-	$('#sticky-sidebar').theiaStickySidebar({
-		// Settings
-		additionalMarginTop: 80
-	});
+    /*---------------------------------------
+       products gallery image Slider Active
+    ---------------------------------------- */
 
-	/*-------------------------------------------------*/
-	/* Hiraola's Bootstraps 4 Tooltip
-/*-------------------------------------------------*/
-	$(function () {
-		$('[data-toggle="tooltip"]').tooltip();
-	});
-	/*--------------------------------
-    Price Slider Active
--------------------------------- */
-	var sliderrange = $('#slider-range');
-	var amountprice = $('#amount');
-	$(function () {
-		sliderrange.slider({
-			range: true,
-			min: 20,
-			max: 100,
-			values: [0, 100],
-			slide: function (event, ui) {
-				amountprice.val('$' + ui.values[0] + ' - $' + ui.values[1]);
-			}
-		});
-		amountprice.val('$' + sliderrange.slider('values', 0) + ' - $' + sliderrange.slider('values', 1));
-	});
-	/*----------------------------------------*/
-	/*  Hiraola's Slick Carousel
- /*----------------------------------------*/
-	var $html = $('html');
-	var $body = $('body');
-	var $elementCarousel = $('.hiraola-slick-slider');
-	// Check if element exists
-	$.fn.elExists = function () {
-		return this.length > 0;
-	};
+    $('.slider-nav').slick({
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        asNavFor: '.slider-main',
+        vertical: true,
+        focusOnSelect: true,
+        autoplay: false,
+        arrows: true,
+        dots: false,
+        margin:10,
+    });
 
-	/*For RTL*/
-	if ($html.attr('dir') == 'rtl' || $body.attr('dir') == 'rtl') {
-		$elementCarousel.attr('dir', 'rtl');
-	}
+    $('.slider-main').slick({
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: false,
+        asNavFor: '.slider-nav',
+        autoplay: false,
+        vertical: true,
+        verticalSwiping: true,
+        arrows: false,
+        dots: false,
 
-	if ($elementCarousel.elExists()) {
-		var slickInstances = [];
+    });
 
-		/*For RTL*/
-		if ($html.attr('dir') == 'rtl' || $body.attr('dir') == 'rtl') {
-			$elementCarousel.attr('dir', 'rtl');
-		}
+    
 
-		$elementCarousel.each(function (index, element) {
-			var $this = $(this);
+    /*--------------------------------
+       Category Product Slider Active
+    ---------------------------------- */
+    $('.category-product-slider').owlCarousel({
+            autoplay :   false,
+            smartSpeed : 1000,
+            nav :  true ,
+            loop: false,
+            dots :  false ,
+            items:4,
+            margin:30,
+            responsive:{
+                0:{
+                    items:1,
+                    autoplay: true,
+                    loop: true,
+                },
+                360:{
+                    items:1,
+                    autoplay: true,
+                    loop: true,
+                },
+                576:{
+                    items:1,
+                    autoplay: true,
+                    loop: true,
+    
+                },
+                768:{
+                    items:2,
+                },
+                992:{
+                    items:1,
+                },
+                1200:{
+                    items:1,
+                }
+            }
+    })
 
-			// Carousel Options
+    /*--------------------------------
+       Category Product Slider Active
+    ---------------------------------- */
+    $('.single-product-slider-active').owlCarousel({
+            autoplay :   false,
+            smartSpeed : 1000,
+            nav :  true ,
+            loop: true,
+            dots :  false ,
+            items:4,
+            margin:30,
+            responsive:{
+                0:{
+                    items:1,
+                    autoplay: true,
+                    loop: true,
+                },
+                360:{
+                    items:1,
+                    autoplay: true,
+                    loop: true,
+                },
+                576:{
+                    items:2,
+                    autoplay: true,
+                    loop: true,
+    
+                },
+                768:{
+                    items:3,
+                },
+                992:{
+                    items:3,
+                },
+                1200:{
+                    items:4,
+                }
+            }
+    })
 
-			var $options = typeof $this.data('slick-options') !== 'undefined' ? $this.data('slick-options') : '';
 
-			var $spaceBetween = $options.spaceBetween ? parseInt($options.spaceBetween, 10) : 0,
-				$spaceBetween_xl = $options.spaceBetween_xl ? parseInt($options.spaceBetween_xl, 10) : 0,
-				$rowSpace = $options.rowSpace ? parseInt($options.rowSpace, 10) : 0,
-				$vertical = $options.vertical ? $options.vertical : false,
-				$focusOnSelect = $options.focusOnSelect ? $options.focusOnSelect : false,
-				$asNavFor = $options.asNavFor ? $options.asNavFor : '',
-				$fade = $options.fade ? $options.fade : false,
-				$autoplay = $options.autoplay ? $options.autoplay : false,
-				$autoplaySpeed = $options.autoplaySpeed ? parseInt($options.autoplaySpeed, 10) : 5000,
-				$swipe = $options.swipe ? $options.swipe : true,
-				$swipeToSlide = $options.swipeToSlide ? $options.swipeToSlide : true,
-				$touchMove = $options.touchMove ? $options.touchMove : false,
-				$verticalSwiping = $options.verticalSwiping ? $options.verticalSwiping : true,
-				$draggable = $options.draggable ? $options.draggable : true,
-				$arrows = $options.arrows ? $options.arrows : false,
-				$dots = $options.dots ? $options.dots : false,
-				$adaptiveHeight = $options.adaptiveHeight ? $options.adaptiveHeight : true,
-				$infinite = $options.infinite ? $options.infinite : false,
-				$centerMode = $options.centerMode ? $options.centerMode : false,
-				$centerPadding = $options.centerPadding ? $options.centerPadding : '',
-				$variableWidth = $options.variableWidth ? $options.variableWidth : false,
-				$speed = $options.speed ? parseInt($options.speed, 10) : 500,
-				$appendArrows = $options.appendArrows ? $options.appendArrows : $this,
-				$prevArrow =
-				$arrows === true ?
-				$options.prevArrow ?
-				'<span class="' +
-				$options.prevArrow.buttonClass +
-				'"><i class="' +
-				$options.prevArrow.iconClass +
-				'"></i></span>' :
-				'<button class="tty-slick-text-btn tty-slick-text-prev"><i class="ion-ios-arrow-back"></i></span>' :
-				'',
-				$nextArrow =
-				$arrows === true ?
-				$options.nextArrow ?
-				'<span class="' +
-				$options.nextArrow.buttonClass +
-				'"><i class="' +
-				$options.nextArrow.iconClass +
-				'"></i></span>' :
-				'<button class="tty-slick-text-btn tty-slick-text-next"><i class="ion-ios-arrow-forward"></i></span>' :
-				'',
-				$rows = $options.rows ? parseInt($options.rows, 10) : 1,
-				$rtl = $options.rtl || $html.attr('dir="rtl"') || $body.attr('dir="rtl"') ? true : false,
-				$slidesToShow = $options.slidesToShow ? parseInt($options.slidesToShow, 10) : 1,
-				$slidesToScroll = $options.slidesToScroll ? parseInt($options.slidesToScroll, 10) : 1;
+    /*--------------------------------
+       Category Product Slider Active
+    ---------------------------------- */
+    $('.category-product-2').owlCarousel({
+            autoplay :   false,
+            smartSpeed : 1000,
+            nav :  true ,
+            loop: false,
+            dots :  false ,
+            items:1,
+            margin:30,
+            responsive:{
+                0:{
+                    items:1,
+                    autoplay: true,
+                    loop: true,
+                },
+                360:{
+                    items:1,
+                    autoplay: true,
+                    loop: true,
+                },
+                576:{
+                    items:1,
+                    autoplay: true,
+                    loop: true,
+    
+                },
+                768:{
+                    items:1,
+                },
+                992:{
+                    items:1,
+                },
+                1200:{
+                    items:1,
+                }
+            }
+    })
 
-			/*Responsive Variable, Array & Loops*/
-			var $responsiveSetting =
-				typeof $this.data('slick-responsive') !== 'undefined' ? $this.data('slick-responsive') : '',
-				$responsiveSettingLength = $responsiveSetting.length,
-				$responsiveArray = [];
-			for (var i = 0; i < $responsiveSettingLength; i++) {
-				$responsiveArray[i] = $responsiveSetting[i];
-			}
 
-			// Adding Class to instances
-			$this.addClass('slick-carousel-' + index);
-			$this.parent().find('.slick-dots').addClass('dots-' + index);
-			$this.parent().find('.slick-btn').addClass('btn-' + index);
+    /*--------------------------
+            Product Zoom
+    ---------------------------- */
+    $(".zoompro").elevateZoom({
+        gallery: "gallery",
+        galleryActiveClass: "active",
+        zoomWindowWidth: 300,
+        zoomWindowHeight: 100,
+        scrollZoom: false,
+        zoomType: "inner",
+        cursor: "crosshair"
+    });
+    
+    
+    /*---------------------
+        Product dec slider
+    --------------------- */
+    $('.product-dec-slider-2').slick({
+        infinite: true,
+        slidesToShow: 4,
+        arrows:false,
+        slidesToScroll: 1,
+        responsive: [{
+                breakpoint: 992,
+                Settings: {
+                    slidesToShow: 4,
+                    slidesToScroll: 1
+                }
+            },
+            {
+                breakpoint: 767,
+                Settings: {
+                    slidesToShow: 4,
+                    slidesToScroll: 1
+                }
+            },
+            {
+                breakpoint: 479,
+                Settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 1
+                }
+            }
+        ]
+    });
+    /*---------------------
+        Product dec slider
+    --------------------- */
+    $('.product-dec-slider-3').slick({
+        infinite: true,
+        slidesToShow: 4,
+        arrows:false,
+        vertical: true,
+        slidesToScroll: 1,
+        responsive: [{
+                breakpoint: 992,
+                Settings: {
+                    slidesToShow: 4,
+                    slidesToScroll: 1
+                }
+            },
+            {
+                breakpoint: 767,
+                Settings: {
+                    slidesToShow: 4,
+                    slidesToScroll: 1
+                }
+            },
+            {
+                breakpoint: 479,
+                Settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 1
+                }
+            }
+        ]
+    });
 
-			if ($spaceBetween != 0) {
-				$this.addClass('slick-gutter-' + $spaceBetween);
-			}
-			if ($spaceBetween_xl != 0) {
-				$this.addClass('slick-gutter-xl-' + $spaceBetween_xl);
-			}
-			var $slideCount = null;
-			$this.on('init', function (event, slick) {
-				$this.find('.slick-active').first().addClass('first-active');
-				$this.find('.slick-active').last().addClass('last-active');
-				$slideCount = slick.slideCount;
-				if ($slideCount <= $slidesToShow) {
-					$this.children('.slick-dots').hide();
-				}
-				var $firstAnimatingElements = $('.slick-slide').find('[data-animation]');
-				doAnimations($firstAnimatingElements);
-			});
+    /*---------------------------
+       Blog Gallery Slider Active
+    ------------------------------ */
 
-			$this.slick({
-				slidesToShow: $slidesToShow,
-				slidesToScroll: $slidesToScroll,
-				asNavFor: $asNavFor,
-				autoplay: $autoplay,
-				autoplaySpeed: $autoplaySpeed,
-				speed: $speed,
-				infinite: $infinite,
-				arrows: $arrows,
-				dots: $dots,
-				adaptiveHeight: $adaptiveHeight,
-				vertical: $vertical,
-				focusOnSelect: $focusOnSelect,
-				centerMode: $centerMode,
-				centerPadding: $centerPadding,
-				variableWidth: $variableWidth,
-				swipe: $swipe,
-				swipeToSlide: $swipeToSlide,
-				touchMove: $touchMove,
-				draggable: $draggable,
-				fade: $fade,
-				appendArrows: $appendArrows,
-				prevArrow: $prevArrow,
-				nextArrow: $nextArrow,
-				rtl: $rtl,
-				responsive: $responsiveArray
-			});
+      $('.blog-gallery').slick({
+        dots: false,
+        infinite: true,
+        arrows: true,
+        prevArrow:'<span class="prev"><i class="ion-ios-arrow-left"></i></span>',
+        nextArrow: '<span class="next"><i class="ion-ios-arrow-right"></i></span>',
+        speed: 800,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+    });
 
-			$this.on('beforeChange', function (e, slick, currentSlide, nextSlide) {
-				$this.find('.slick-active').first().removeClass('first-active');
-				$this.find('.slick-active').last().removeClass('last-active');
-				var $animatingElements = $('.slick-slide[data-slick-index="' + nextSlide + '"]').find(
-					'[data-animation]'
-				);
-				doAnimations($animatingElements);
-			});
+    /*---------------------------
+       Quick view Slider Active
+    ------------------------------ */
+    $('.quickview-slide-active').owlCarousel({
+        loop: false,
+        margin: 15,
+        smartSpeed: 1000,
+        nav: true,
+        dots: false,
+        responsive: {
+            0: {
+                items: 3,
+                autoplay: true,
+                smartSpeed: 300
+            },
+            576: {
+                items: 3
+            },
+            768: {
+                items: 3
+            },
+            1000: {
+                items: 3
+            }
+        }
+    })
+    
+    
+    $('.quickview-slide-active a').on('click', function() {
+        $('.quickview-slide-active a').removeClass('active');
+    })
+    
+      /*--------------------------
+        ScrollUp
+    ---------------------------- */
+    $.scrollUp({
+        scrollText: '<i class="fa fa-arrow-up"></i>',
+        easingType: 'linear',
+        scrollSpeed: 900,
+        animation: 'fade'
+    });
+    
 
-			function doAnimations(elements) {
-				var animationEndEvents = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
-				elements.each(function () {
-					var $el = $(this);
-					var $animationDelay = $el.data('delay');
-					var $animationDuration = $el.data('duration');
-					var $animationType = 'animated ' + $el.data('animation');
-					$el.css({
-						'animation-delay': $animationDelay,
-						'animation-duration': $animationDuration
-					});
-					$el.addClass($animationType).one(animationEndEvents, function () {
-						$el.removeClass($animationType);
-					});
-				});
-			}
+ /*----------------------------
+        Cart Plus Minus Button
+    ------------------------------ */
+    var CartPlusMinus = $('.cart-plus-minus');
+    CartPlusMinus.prepend('<div class="dec qtybutton">-</div>');
+    CartPlusMinus.append('<div class="inc qtybutton">+</div>');
+    $(".qtybutton").on("click", function() {
+        var $button = $(this);
+        var oldValue = $button.parent().find("input").val();
+        if ($button.text() === "+") {
+            var newVal = parseFloat(oldValue) + 1;
+        } else {
+            // Don't allow decrementing below zero
+            if (oldValue > 1) {
+                var newVal = parseFloat(oldValue) - 1;
+            } else {
+                newVal = 1;
+            }
+        }
+        $button.parent().find("input").val(newVal);
+    });
+    
 
-			$this.on('afterChange', function (e, slick) {
-				$this.find('.slick-active').first().addClass('first-active');
-				$this.find('.slick-active').last().addClass('last-active');
-			});
 
-			// Updating the sliders in tab
-			$('body').on('shown.bs.tab', 'a[data-toggle="tab"], a[data-toggle="pill"]', function (e) {
-				$this.slick('setPosition');
-			});
-		});
-	}
-	/*----------------------------------------*/
-	/*  Single Product Image Slider
- /*----------------------------------------*/
-	$('.sp-img_slider').slick({
-		infinite: true,
-		slidesToShow: 4,
-		slidesToScroll: 1,
-		prevArrow: '<button class="slick-prev"><i class="ion-ios-arrow-back"></i></button>',
-		nextArrow: '<button class="slick-next"><i class="ion-ios-arrow-forward"></i></button>',
-		responsive: [{
-				breakpoint: 1199,
-				settings: {
-					slidesToShow: 3,
-					slidesToScroll: 1
-				}
-			},
-			{
-				breakpoint: 768,
-				settings: {
-					slidesToShow: 3,
-					slidesToScroll: 1
-				}
-			},
-			{
-				breakpoint: 767,
-				settings: {
-					slidesToShow: 3,
-					slidesToScroll: 1
-				}
-			},
-			{
-				breakpoint: 575,
-				settings: {
-					slidesToShow: 2,
-					slidesToScroll: 1
-				}
-			}
-		]
-	});
-	/*----------------------------------------*/
-	/*  Latest Blog Slider
- /*----------------------------------------*/
-	$('.latest-blog_slider').slick({
-		infinite: true,
-		slidesToShow: 3,
-		slidesToScroll: 1,
-		prevArrow: '<button class="slick-prev"><i class="ion-ios-arrow-back"></i></button>',
-		nextArrow: '<button class="slick-next"><i class="ion-ios-arrow-forward"></i></button>',
-		responsive: [{
-				breakpoint: 1199,
-				settings: {
-					slidesToShow: 3,
-					slidesToScroll: 1
-				}
-			},
-			{
-				breakpoint: 992,
-				settings: {
-					slidesToShow: 2,
-					slidesToScroll: 1
-				}
-			},
-			{
-				breakpoint: 768,
-				settings: {
-					slidesToShow: 1,
-					slidesToScroll: 1
-				}
-			}
-		]
-	});
-	/*----------------------------------------*/
-	/*  Brand Slider
- /*----------------------------------------*/
-	$('.brand-slider').slick({
-		infinite: true,
-		arrows: false,
-		dots: false,
-		speed: 2000,
-		slidesToShow: 5,
-		slidesToScroll: 1,
-		prevArrow: '<button class="slick-prev"><i class="ion-ios-arrow-back"></i></button>',
-		nextArrow: '<button class="slick-next"><i class="ion-ios-arrow-forward"></i></button>',
-		responsive: [{
-				breakpoint: 1199,
-				settings: {
-					slidesToShow: 3,
-					slidesToScroll: 1
-				}
-			},
-			{
-				breakpoint: 768,
-				settings: {
-					slidesToShow: 2,
-					slidesToScroll: 1
-				}
-			}
-		]
-	});
-	/*----------------------------------------*/
-	/*  Hiraola's Color List
- /*----------------------------------------*/
+  /*-------------------------
+    Create an account toggle
+    --------------------------*/
+    $('.checkout-toggle2').on('click', function() {
+        $('.open-toggle2').slideToggle(1000);
+    });
+    
+    $('.checkout-toggle').on('click', function() {
+        $('.open-toggle').slideToggle(1000);
+    });
 
-	$('.color-list a').on('click', function (e) {
-		e.preventDefault();
-		var $this = $(this);
-		$this.addClass('active');
-		$this.siblings().removeClass('active');
-		var $navs = document.querySelectorAll('.slick-slider-nav .single-slide');
-		var $details = document.querySelectorAll('.slick-img-slider .single-slide');
-		console.log($navs);
-		var $btnColor = $this.data('swatch-color');
-		for (var i = 0; i < $navs.length; i++) {
-			$navs[i].classList.remove('slick-current');
-			if ($navs[i].classList.contains($btnColor)) {
-				$navs[i].classList.add('slick-current');
-			}
-		}
-		for (var i = 0; i < $details.length; i++) {
-			$details[i].classList.remove('slick-current');
-			$details[i].style.opacity = 0;
-			if ($details[i].classList.contains($btnColor)) {
-				$details[i].classList.add('slick-current');
-				$details[i].style.opacity = 1;
-			}
-		}
-	});
-	/*----------------------------------------*/
-	/*  Single Product Image Slider Three
- /*----------------------------------------*/
-	$('.sp-img_slider-3').slick({
-		infinite: true,
-		slidesToShow: 4,
-		vertical: true,
-		slidesToScroll: 1,
-		prevArrow: '<button class="slick-prev"><i class="ion-ios-arrow-up"></i></button>',
-		nextArrow: '<button class="slick-next"><i class="ion-ios-arrow-down"></i></button>',
-		responsive: [{
-				breakpoint: 1200,
-				settings: {
-					slidesToShow: 4,
-					slidesToScroll: 1
-				}
-			},
-			{
-				breakpoint: 1199,
-				settings: {
-					slidesToShow: 4,
-					slidesToScroll: 1
-				}
-			},
-			{
-				breakpoint: 992,
-				settings: {
-					slidesToShow: 5,
-					slidesToScroll: 1
-				}
-			},
-			{
-				breakpoint: 767,
-				settings: {
-					slidesToShow: 4,
-					slidesToScroll: 1
-				}
-			},
-			{
-				breakpoint: 321,
-				settings: {
-					slidesToShow: 2,
-					slidesToScroll: 1
-				}
-			}
-		]
-	});
-	/*--------------------------
-        Hiraola's Product Zoom
-	---------------------------- */
-	$('.zoompro').elevateZoom({
-		gallery: 'gallery',
-		galleryActiveClass: 'active'
-	});
-	/*----------------------------------------*/
-	/*  Single Product Slider
- /*----------------------------------------*/
-	$('.sp-slider').slick({
-		infinite: true,
-		slidesToShow: 4,
-		slidesToScroll: 1,
-		arrows: true,
-		dots: false,
-		prevArrow: '<button class="slick-prev"><i class="ion-ios-arrow-back"></i></button>',
-		nextArrow: '<button class="slick-next"><i class="ion-ios-arrow-forward"></i></button>',
-		responsive: [{
-				breakpoint: 1199,
-				settings: {
-					slidesToShow: 3,
-					slidesToScroll: 1
-				}
-			},
-			{
-				breakpoint: 768,
-				settings: {
-					slidesToShow: 3,
-					slidesToScroll: 1
-				}
-			},
-			{
-				breakpoint: 767,
-				settings: {
-					slidesToShow: 4,
-					slidesToScroll: 1
-				}
-			},
-			{
-				breakpoint: 575,
-				settings: {
-					slidesToShow: 2,
-					slidesToScroll: 1
-				}
-			}
-		]
-	});
-	/*------------------------------------
-	        DateCountdown active 1
-	    ------------------------------------- */
-	$(".DateCountdown").TimeCircles({
-		direction: "Counter-clockwise",
-		fg_width: 0.009,
-		bg_width: 0,
-		use_background: false,
-		animation: 'thick',
-		time: {
-			Days: {
-				text: "Days",
-				color: "#fff"
-			},
-			Hours: {
-				text: "Hours",
-				color: "#fff"
-			},
-			Minutes: {
-				text: "Mins",
-				color: "#fff"
-			},
-			Seconds: {
-				text: "Secs",
-				color: "#fff"
-			}
-		}
+    
+    $('.vertical-menu-toggle').on('click', function() {
+        $('.open-menu-toggle').slideToggle(500);
+    });
 
-	});
-})(jQuery);
+     /*--------------------  
+     Category more toggle  
+     ----------------------*/
+
+    $(".vertical-menu li.hidden").hide();
+       $("#more-btn").on('click', function (e) {
+
+        e.preventDefault();
+        $(".vertical-menu li.hidden").toggle(500);
+        var htmlAfter = '<i class="ion-ios-minus-empty" aria-hidden="true"></i> Less Categories';
+        var htmlBefore = '<i class="ion-ios-plus-empty" aria-hidden="true"></i> More Categories';
+
+
+        if ($(this).html() == htmlBefore) {
+            $(this).html(htmlAfter);
+        } else {
+            $(this).html(htmlBefore);
+        }
+    });
+
+     /*--------------------  
+     All Category toggle  
+     ----------------------*/
+
+        $(".category-toggle").click(function(){
+            $(".category-menu").slideToggle("slow");
+          });
+        $(".menu-item-has-children-1").click(function(){
+            $(".category-mega-menu-1").slideToggle("slow");
+          });
+        $(".menu-item-has-children-2").click(function(){
+            $(".category-mega-menu-2").slideToggle("slow");
+          });
+        $(".menu-item-has-children-3").click(function(){
+            $(".category-mega-menu-3").slideToggle("slow");
+          });
+        $(".menu-item-has-children-4").click(function(){
+            $(".category-mega-menu-4").slideToggle("slow");
+          });
+        $(".menu-item-has-children-5").click(function(){
+            $(".category-mega-menu-5").slideToggle("slow");
+          });
+        $(".menu-item-has-children-6").click(function(){
+            $(".category-mega-menu-6").slideToggle("slow");
+          });
+
+
+    /*---------------------
+        Countdown
+    --------------------- */
+    $('[data-countdown]').each(function() {
+        var $this = $(this),
+            finalDate = $(this).data('countdown');
+        $this.countdown(finalDate, function(event) {
+            $this.html(event.strftime('<span class="cdown day">%-D <p>Days</p></span> <span class="cdown hour">%-H <p>Hours</p></span> <span class="cdown minutes">%M <p>Mins</p></span> <span class="cdown second">%S <p>Sec</p></span>'));
+        });
+    });
+
+
+   });
+
+    /*---------------------------
+       Menu Fixed On Scroll Active
+    ------------------------------ */
+  $(window).scroll(function () {
+    var window_top = $(window).scrollTop() + 1;
+    if (window_top > 50) {
+      $('.sticky-nav').addClass('menu_fixed animated fadeInDown');
+    } else {
+      $('.sticky-nav').removeClass('menu_fixed animated fadeInDown');
+    }
+  });
+   
+    /*---------------------------
+       Window On Load Functions Active
+    ------------------------------ */
+    
+      $(window).on('load', function(event) {
+        $('#preloader').delay(500).fadeOut(500);
+    });
+
+
+ 
+
+}(jQuery)); 
