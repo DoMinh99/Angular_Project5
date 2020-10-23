@@ -10,6 +10,8 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { LoginComponent } from './login/login.component';
 import { SearchComponent } from './search/search.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ProductDetailComponent } from './shared/product-detail/product-detail.component';
+import { NewsComponent } from './news/news.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { HttpClientModule } from '@angular/common/http';
     HeaderComponent,
     FooterComponent,
     LoginComponent,
-    SearchComponent
+    SearchComponent,
+    ProductDetailComponent,
+    NewsComponent
   ],
   imports: [
     BrowserModule,

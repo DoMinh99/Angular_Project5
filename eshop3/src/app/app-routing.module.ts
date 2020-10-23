@@ -6,6 +6,8 @@ import { SharedComponent } from './shared/shared.component';
 import { LoginComponent } from './login/login.component';
 import { SearchComponent } from './search/search.component';
 import { HeaderComponent } from './shared/header/header.component';
+import { ProductDetailComponent } from './shared/product-detail/product-detail.component';
+import { NewsComponent } from './news/news.component';
 import { FooterComponent } from './shared/footer/footer.component';
 
 const routes: Routes = [
@@ -15,6 +17,8 @@ const routes: Routes = [
   { path:'search', component:SearchComponent },
   { path:'header', component:HeaderComponent },
   { path:'footer', component:FooterComponent },
+  { path:'news', component:NewsComponent },
+  { path:'product-detail/:id_product', component:ProductDetailComponent },
 
   
 ];
