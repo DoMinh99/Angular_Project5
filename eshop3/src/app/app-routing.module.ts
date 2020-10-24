@@ -9,6 +9,7 @@ import { HeaderComponent } from './shared/header/header.component';
 import { ProductDetailComponent } from './shared/product-detail/product-detail.component';
 import { NewsComponent } from './news/news.component';
 import { FooterComponent } from './shared/footer/footer.component';
+// import {ItemListComponent } from './shared/header/header.component'
 
 const routes: Routes = [
   { path:'', component:MainComponent },
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path:'footer', component:FooterComponent },
   { path:'news', component:NewsComponent },
   { path:'product-detail/:id_product', component:ProductDetailComponent },
+  {path:'item-list/:id', component:HeaderComponent}
 
   
 ];

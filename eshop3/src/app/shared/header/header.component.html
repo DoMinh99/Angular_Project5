@@ -122,7 +122,7 @@
                                                 </ul>
                                             </li>
                                             <li class="menu-dropdown">
-                                                <a href="#">Tin tức </a>
+                                                <a routerLink="news">Tin tức </a>
 
                                             </li>
                                             <li><a href="contact.html">Liên hệ</a></li>
@@ -193,7 +193,9 @@
                                     <div class="beauty-category vertical-menu home-9 home-10">
                                         <h3 class="vertical-menu-heading vertical-menu-toggle">Tất cả các danh mục</h3>
                                         <ul class="vertical-menu-wrap open-menu-toggle">
-                                            <li class="menu-dropdown">
+                                            <!-- <li class="menu-dropdown">
+
+
                                                 <a href="#">Funiture & Lights<i class="ion-ios-arrow-down"></i></a>
                                                 <ul class="mega-menu-wrap">
                                                     <li>
@@ -261,16 +263,21 @@
                                                     <li><a href="#">Kitchen Tools & Gadgets</a></li>
                                                     <li><a href="#">Kitchen Knives </a></li>
                                                 </ul>
-                                            </li>
-                                            <li><a href="#">Home Furniture</a></li>
+                                            </li> -->
+                                            
+                                            <ng-container *ngFor="let c of i.children">
+                                                <li><a routerLink="/header/{{c.category_id}}">{{ c.name }}</a></li>
+                                            </ng-container>
+                                            
+                                            
                                             <li><a href="#">Office Furniture</a></li>
                                             <li><a href="#">Wall Clocks</a></li>
                                             <li><a href="#">Top Furniture Stores</a></li>
                                             <li><a href="#"> Wall Stickers</a></li>
                                             <li class="hidden"><a href="#">Flashlights</a></li>
-                                            <li>
+                                            <!-- <li>
                                                 <a href="#" id="more-btn"><i class="ion-ios-plus-empty" aria-hidden="true"></i> More Categories</a>
-                                            </li>
+                                            </li> -->
                                         </ul>
                                     </div>
                                     <!-- Beauty Category -->
