@@ -12,6 +12,8 @@ import { SearchComponent } from './search/search.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductDetailComponent } from './shared/product-detail/product-detail.component';
 import { NewsComponent } from './news/news.component';
+import { CategoryComponent } from './shared/category/category.component';
+import { ItemListComponent } from './shared/item-list/item-list.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { NewsComponent } from './news/news.component';
     LoginComponent,
     SearchComponent,
     ProductDetailComponent,
-    NewsComponent
+    NewsComponent,
+    CategoryComponent,
+    ItemListComponent
   ],
   imports: [
     BrowserModule,
