@@ -14,6 +14,7 @@ import { ProductDetailComponent } from './shared/product-detail/product-detail.c
 import { NewsComponent } from './news/news.component';
 import { CategoryComponent } from './shared/category/category.component';
 import { ItemListComponent } from './shared/item-list/item-list.component';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ItemListComponent } from './shared/item-list/item-list.component';
     ProductDetailComponent,
     NewsComponent,
     CategoryComponent,
-    ItemListComponent
+    ItemListComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
