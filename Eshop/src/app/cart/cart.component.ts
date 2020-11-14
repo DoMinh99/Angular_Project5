@@ -19,8 +19,8 @@ export class CartComponent extends BaseComponent implements OnInit {
       this.items = res;
       this.total = 0;
       for (let x of this.items) {
-        x.money = x.quantity_sale * x.unit_price;
-        this.total += x.quantity_sale * x.unit_price;
+        x.money = x.quantity * x.unit_price;
+        this.total += x.quantity * x.unit_price;
       }
     });
   }
@@ -28,10 +28,10 @@ export class CartComponent extends BaseComponent implements OnInit {
     this._cart.clearCart();
     alert('Xóa thành công!');
   }
-  addQty(item, quantity_sale) {
-    if (item.quantity >= quantity_sale) {
-      item.quantity_sale = quantity_sale;
-      item.money = Number.parseInt(item.quantity_sale) * item.price;
+  addQty(item, quantity) {
+    if (item.quantity >= quantity) {
+      item.quantity = quantity;
+      item.money = Number.parseInt(item.quantity) * item.price;
       this._cart.addQty(item);
     } else {
       alert('Số lượng không đủ!');
