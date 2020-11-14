@@ -1,49 +1,57 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { AppComponent } from './app.component';
+import { CheckboxControlValueAccessor } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
-import { FooterComponent } from './footer/footer.component';
-import { HeaderComponent } from './header/header.component';
-import { CheckoutComponent } from './checkout/checkout.component';
-import { CartComponent } from './cart/cart.component';
-import { ContactComponent } from './contact/contact.component';
+import { AboutComponent } from './about/about.component';
 import { LoginComponent } from './login/login.component';
-import { ProductDetailComponent } from './product-detail/product-detail.component';
-import { NewsComponent } from './news/news.component';
-import { BodyComponent } from './body/body.component';
+import { MainComponent } from './main/main.component';
+import { MyaccountComponent } from './myaccount/myaccount.component';
+import { CartComponent } from './product/cart/cart.component';
+import { CheckoutComponent } from './product/checkout/checkout.component';
+import { DetailComponent } from './product/detail/detail.component';
+import {ItemListComponent } from './product/item-list/item-list.component'
+import { SearchComponent } from './search/search.component';
 
-
-
-const routes: Routes = [ 
-  {path:"checkout", component:CheckoutComponent}, 
-  {path:"", component:BodyComponent}, 
-  {path:"login", component:LoginComponent}, 
-  {path:"productDetail", component:ProductDetailComponent}, 
-  {path:"contact", component:ContactComponent}, 
-  {path:"cart", component:CartComponent}, 
-  {path:"news", component:NewsComponent}, 
-  {path:"header", component:HeaderComponent}, 
-  {path:"footer", component:FooterComponent}, 
-  {path:"", component:BrowserModule}, 
-  {path:"app", component:AppComponent}, 
+const routes: Routes = [
+  {
+    path:'home',
+    component:MainComponent
+  },
+  {
+    path:'cart',
+    component:CartComponent
+  },
+  {
+    path:'checkout',
+    component:CheckoutComponent
+  },
+  {
+    path:'login',
+    component:LoginComponent
+  },
+  {
+    path:'search',
+    component:SearchComponent
+  },
+  {
+    path:'myacc',
+    component:MyaccountComponent
+  },
+  {
+path:'item-list/:id',
+component:ItemListComponent
+  },
+  {
+    path:'detail/:id_product',
+    component:DetailComponent
+  },
+  {
+    path:'about',
+    component:AboutComponent
+  }
 ];
 
 @NgModule({
-
-  declarations: [
-    // BodyComponent,
-    // CheckoutComponent,
-    // BodyComponent,
-    // HeaderComponent,
-    // CartComponent,
-    // ContactComponent,
-    // ProductDetailComponent,
-    // FooterComponent,
-    // LoginComponent,
-  ],
-
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
-
 })
 export class AppRoutingModule { }

@@ -1,37 +1,72 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
-import { CheckoutComponent } from './checkout/checkout.component';
-import { CartComponent } from './cart/cart.component';
+import { HeaderComponent } from './share/header/header.component';
+import { FooterComponent } from './share/footer/footer.component';
+import {Router} from '@angular/router';
+import { MainComponent } from './main/main.component';
+import { ShareComponent } from './share/share.component';
+import { ProductComponent } from './product/product.component';
+import { CartComponent } from './product/cart/cart.component';
+import { DetailComponent } from './product/detail/detail.component';
+import { SearchComponent } from './search/search.component';
+import { ModalComponent } from './share/modal/modal.component';
 import { LoginComponent } from './login/login.component';
-import { ContactComponent } from './contact/contact.component';
-import { ProductDetailComponent } from './product-detail/product-detail.component';
-import { NewsComponent } from './news/news.component';
+import { CheckoutComponent } from './product/checkout/checkout.component';
+import { MyaccountComponent } from './myaccount/myaccount.component';
+import { AboutComponent } from './about/about.component';
+import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
-import { Routes } from '@angular/router';
-import { BodyComponent } from './body/body.component';
+import { CategoryComponent } from './share/category/category.component';
+import { ItemListComponent } from './product/item-list/item-list.component';
+import { ListItemComponent } from './product/list-item/list-item.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    
     HeaderComponent,
+
     FooterComponent,
-    CheckoutComponent,
+
+    MainComponent,
+
+    ShareComponent,
+
+    ProductComponent,
+
     CartComponent,
+
+    ListItemComponent,
+
+    DetailComponent,
+
+    SearchComponent,
+
+    ModalComponent,
+
     LoginComponent,
-    ContactComponent,
-    ProductDetailComponent,
-    NewsComponent,
-    BodyComponent
+
+    CheckoutComponent,
+
+    MyaccountComponent,
+
+    AboutComponent,
+
+    CategoryComponent,
+
+    ItemListComponent,
+
+
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     ReactiveFormsModule,
     HttpClientModule
   ],

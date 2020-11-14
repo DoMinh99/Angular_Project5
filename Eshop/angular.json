@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Eshop": {
+    "DA5": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/Eshop",
+            "outputPath": "dist/DA5",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -62,18 +62,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "Eshop:build"
+            "browserTarget": "DA5:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "Eshop:build:production"
+              "browserTarget": "DA5:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "Eshop:build"
+            "browserTarget": "DA5:build"
           }
         },
         "test": {
@@ -110,15 +110,19 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "Eshop:serve"
+            "devServerTarget": "DA5:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "Eshop:serve:production"
+              "devServerTarget": "DA5:serve:production"
             }
           }
         }
       }
-    }},
-  "defaultProject": "Eshop"
+    }
+  },
+  "defaultProject": "DA5",
+  "cli": {
+    "analytics": "1cb2e5f4-f200-4524-9746-44e64f21da78"
+  }
 }
