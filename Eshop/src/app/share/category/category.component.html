@@ -6,8 +6,11 @@
                     <div class="d-flex align-items-start justify-content-start">
                         <!-- Beauty Category -->
                         <div class="beauty-category vertical-menu home-9 home-10">
-                            <h3 class="vertical-menu-heading vertical-menu-toggle">Sản phẩm của chúng tôi</h3>
+                            <h3 class="vertical-menu-heading vertical-menu-toggle">Danh mục</h3>
                             <ul class="vertical-menu-wrap open-menu-toggle">
+
+
+
                                 <ng-container *ngFor="let i of category">
                                     <li *ngIf="i.children != null" class="menu-item">
                                       <a [routerLink]="['/item-list', i.category_id]">{{ i.name }} <i
@@ -15,6 +18,7 @@
                                       <ul class="sub-menu sub-menu-2">
                                         <li>
                                           <ul class="submenu-item">
+                                              
                                             <ng-container *ngFor="let c of i.children">
                                               <li><a routerLink="/item-list/{{c.category_id}}">{{ c.name }}</a></li>
                                             </ng-container>
@@ -27,6 +31,9 @@
                                     <li class="menu-item" *ngIf="i.children == null"><a
                                         routerLink="/item-list/{{i.category_id}}">{{ i.name }}</a></li>
                                   </ng-container>
+
+
+
                             </ul>
                         </div>
                         <!-- Beauty Category -->
